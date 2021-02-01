@@ -28,7 +28,8 @@ namespace VideoMonitoramento
             services.AddControllers();
             services.AddTransient<ServerDb>(_ => new ServerDb(Configuration["ConnectionStrings:DbConnection"]));
             services.AddTransient<VideoDb>(_ => new VideoDb(Configuration["ConnectionStrings:DbConnection"]));
-            new Recycler("not running");
+            var recycler = new Recycler("not running");
+            recycler.RecyclerConnection(Configuration["ConnectionStrings:DbConnection"]); 
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

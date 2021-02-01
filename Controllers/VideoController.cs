@@ -41,7 +41,7 @@ namespace VideoMonitoramento.Controllers
                 {
                     if (formFile.Length > 0)
                     {
-                        var filePath = "videos/" + saveVideo.Id;
+                        var filePath = "videos/" + id + "/" + saveVideo.Id;
                         using (var stream = System.IO.File.Create(filePath))
                         {
                             await formFile.CopyToAsync(stream);
@@ -69,6 +69,10 @@ namespace VideoMonitoramento.Controllers
                 return new NotFoundResult();
             try
             {
+                //Delet physical binary
+                var filePath = "videos/" + result.ServerId +"/"+ videoId;
+                System.IO.File.Delete(filePath);
+                //Delet in data base
                 await result.DeleteAsync();
             }
             catch (System.Exception)
@@ -99,8 +103,9 @@ namespace VideoMonitoramento.Controllers
             var result = await query.FindVideoAsync(videoId);
             if (result is null)
                 return new NotFoundResult();
-            
-            byte[] fileBytes = System.IO.File.ReadAllBytes($"videos/{videoId}");
+
+            // Open binary video
+            byte[] fileBytes = System.IO.File.ReadAllBytes($"videos/{result.ServerId}/{videoId}");
             string fileName = videoId;
             return File(fileBytes, System.Net.Mime.MediaTypeNames.Application.Octet, fileName);
         }

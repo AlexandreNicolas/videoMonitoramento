@@ -10,16 +10,19 @@ namespace VideoMonitoramento
     public class Recycler
     {
         public static string Status { get; set; }
-        private readonly string _serverConection;
-        public Recycler(string configuration)
+        public static string DbConnection { get; set; }
+        public Recycler(string status)
         {
-            Status = configuration;
+            Status = status;
         }
         public Recycler()
         { }
+        public void RecyclerConnection(string dbConnection)
+        {
+            DbConnection = dbConnection;
+        }
         public async void RecyclerDeleteAsync(int days)
         {
-            var DbConnection = "Server=videoMonit;Port=3306;Uid='root';Password=password;Database=videoMonitoramento;Allow User Variables=True";
             var videoDb = new VideoDb(DbConnection);
             await videoDb.Connection.OpenAsync();
             var query = new VideoQuery(videoDb);
@@ -27,15 +30,23 @@ namespace VideoMonitoramento
 
             if (results is null || results.Count == 0)
                 return;
-            new Recycler("running");
+
+            Status = "running";
             // Thread.Sleep(10000);
             foreach (var result in results)
             {
-                Thread thread = new Thread(() => result.ThreadDeleteAsync());
-                thread.Start();
-                thread.Join();
+                var filePath = "videos/" + result.ServerId + "/" + result.Id;
+                //Remove video from Db
+                Thread threadDb = new Thread(() => result.ThreadDeleteAsync());
+                //Delete physical binary
+                Thread threadIO = new Thread(() => System.IO.File.Delete(filePath));
+
+                threadDb.Start();
+                threadIO.Start();
+                threadDb.Join();
+                threadIO.Join();
             }
-            new Recycler("not running");
+            Status = "not running";
         }
     }
 }

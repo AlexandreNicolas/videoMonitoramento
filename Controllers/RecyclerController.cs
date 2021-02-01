@@ -10,13 +10,6 @@ namespace VideoMonitoramento.Controllers
     [Route("api/recycler")]
     public class RecyclerController : ControllerBase
     {
-        public RecyclerController(VideoDb Vdb)
-        {
-            videoDb = Vdb;
-        }
-        public VideoDb videoDb { get; }
-        // public Recycler Recycler { get; }
-
         // Reciclar vídeos antigos
         [HttpPost("process/{days}")]
         public async Task<IActionResult> CreateRecycler(int days)

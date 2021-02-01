@@ -1,4 +1,5 @@
 using System;
+using System.IO;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 
@@ -21,6 +22,11 @@ namespace VideoMonitoramento.Controllers
             body.Id = Guid.NewGuid().ToString();
             body.Db = serverDb;
             await body.InsertAsync();
+
+            // Create the directory.
+            string path = "videos/" + body.Id;
+            Directory.CreateDirectory(path);
+
             return new OkObjectResult(body);
         }
 
@@ -34,6 +40,10 @@ namespace VideoMonitoramento.Controllers
             if (result is null)
                 return new NotFoundResult();
             await result.DeleteAsync();
+
+            // Delete the directory.
+            string path = "videos/" + id;
+            DeleteDirectory(path);
             return new OkResult();
         }
 
@@ -73,6 +83,25 @@ namespace VideoMonitoramento.Controllers
             if (result is null || result.Count == 0)
                 return new NotFoundResult();
             return new OkObjectResult(result);
+        }
+
+        public static void DeleteDirectory(string target_dir)
+        {
+            string[] files = Directory.GetFiles(target_dir);
+            string[] dirs = Directory.GetDirectories(target_dir);
+
+            foreach (string file in files)
+            {
+                System.IO.File.SetAttributes(file, FileAttributes.Normal);
+                System.IO.File.Delete(file);
+            }
+
+            foreach (string dir in dirs)
+            {
+                DeleteDirectory(dir);
+            }
+
+            Directory.Delete(target_dir, false);
         }
     }
 }
