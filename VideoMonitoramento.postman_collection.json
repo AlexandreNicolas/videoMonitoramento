@@ -1,0 +1,495 @@
+{
+	"info": {
+		"_postman_id": "d6176b33-ed27-4555-a09d-f1c79c99b0eb",
+		"name": "VideoMonitoramento",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Server",
+			"item": [
+				{
+					"name": "[Local] Get Server",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:5000/api/servers",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"servers"
+							]
+						},
+						"description": "Recuperar Servidor"
+					},
+					"response": []
+				},
+				{
+					"name": "[Local] Get Server Id",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:5000/api/servers/1058c1b2-b5af-4295-987f-b4e9929ae2b8",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"servers",
+								"1058c1b2-b5af-4295-987f-b4e9929ae2b8"
+							]
+						},
+						"description": "Recuperar Servidor"
+					},
+					"response": []
+				},
+				{
+					"name": "[Local] Post Server",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"Servidor 1\",\n  \"ip\": \"127.0.0.1\",\n  \"Port\": 8081\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/server",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"server"
+							]
+						},
+						"description": "Adicioanr Server"
+					},
+					"response": []
+				},
+				{
+					"name": "[Local] Post Server Available",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"ip\": \"127.0.0.2\",\n  \"Port\": 8081\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/servers/available/1058c1b2-b5af-4295-987f-b4e9929ae2b8",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"servers",
+								"available",
+								"1058c1b2-b5af-4295-987f-b4e9929ae2b8"
+							]
+						},
+						"description": "Adicioanr Server"
+					},
+					"response": []
+				},
+				{
+					"name": "[Local] DEL Server",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/servers/1058c1b2-b5af-4295-987f-b4e9929ae2b8",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"servers",
+								"1058c1b2-b5af-4295-987f-b4e9929ae2b8"
+							]
+						},
+						"description": "Adicioanr Server"
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Video",
+			"item": [
+				{
+					"name": "[Local] Adicionar Video",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "multipart/form-data",
+								"disabled": true
+							},
+							{
+								"key": "",
+								"value": "",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "video",
+									"contentType": "",
+									"type": "file",
+									"src": "/home/anl/Projects/outros/dotnet/image-base64.txt"
+								},
+								{
+									"key": "description",
+									"value": "video 3",
+									"type": "text"
+								}
+							],
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/servers/f7d4b31f-94bd-49af-8ae2-fe30fec08c39/videos",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"servers",
+								"f7d4b31f-94bd-49af-8ae2-fe30fec08c39",
+								"videos"
+							]
+						},
+						"description": "Adicioanr Video ao server"
+					},
+					"response": []
+				},
+				{
+					"name": "[Local] Remover Video",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/servers/f7d4b31f-94bd-49af-8ae2-fe30fec08c39/videos/0cc734bf-166e-4d2d-a74f-a14172ca4bac",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"servers",
+								"f7d4b31f-94bd-49af-8ae2-fe30fec08c39",
+								"videos",
+								"0cc734bf-166e-4d2d-a74f-a14172ca4bac"
+							]
+						},
+						"description": "Adicioanr Video ao server"
+					},
+					"response": []
+				},
+				{
+					"name": "[Local] Recuperar Video",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/servers/8fa79542-e6e9-4f42-8263-88039cc74d33/videos/dc5d1563-8ebc-4b8e-9166-77c1c2430a20",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"servers",
+								"8fa79542-e6e9-4f42-8263-88039cc74d33",
+								"videos",
+								"dc5d1563-8ebc-4b8e-9166-77c1c2430a20"
+							]
+						},
+						"description": "Adicioanr Video ao server"
+					},
+					"response": []
+				},
+				{
+					"name": "[Local] Listar todos os Videos",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/servers/f7d4b31f-94bd-49af-8ae2-fe30fec08c39/videos",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"servers",
+								"f7d4b31f-94bd-49af-8ae2-fe30fec08c39",
+								"videos"
+							]
+						},
+						"description": "Adicioanr Video ao server"
+					},
+					"response": []
+				},
+				{
+					"name": "[Local] Download Video",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/servers/f7d4b31f-94bd-49af-8ae2-fe30fec08c39/videos/a88f8c8a-0f7c-43c0-a749-61d08973d362/binary",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"servers",
+								"f7d4b31f-94bd-49af-8ae2-fe30fec08c39",
+								"videos",
+								"a88f8c8a-0f7c-43c0-a749-61d08973d362",
+								"binary"
+							]
+						},
+						"description": "Adicioanr Video ao server"
+					},
+					"response": []
+				}
+			],
+			"description": "API para os Videos no servidor.",
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Recycler",
+			"item": [
+				{
+					"name": "[Local] Post Reciclar Videos por dia",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"Servidor 2\",\n  \"ip\": \"127.0.0.1\",\n  \"Port\": 8080\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/recycler/process/10",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"recycler",
+								"process",
+								"10"
+							]
+						},
+						"description": "Adicioanr Server"
+					},
+					"response": []
+				},
+				{
+					"name": "[Local] Recycler status",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"Servidor 2\",\n  \"ip\": \"127.0.0.1\",\n  \"Port\": 8080\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/recycler/status",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"recycler",
+								"status"
+							]
+						},
+						"description": "Adicioanr Server"
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		}
+	],
+	"protocolProfileBehavior": {}
+}
