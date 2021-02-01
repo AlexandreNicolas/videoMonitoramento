@@ -19,7 +19,7 @@ namespace VideoMonitoramento
         { }
         public async void RecyclerDeleteAsync(int days)
         {
-            var DbConnection = "Server=127.0.0.1;Port=3306;Uid='root';Password=password;Database=videoMonitoramento;Allow User Variables=True";
+            var DbConnection = "Server=videoMonit;Port=3306;Uid='root';Password=password;Database=videoMonitoramento;Allow User Variables=True";
             var videoDb = new VideoDb(DbConnection);
             await videoDb.Connection.OpenAsync();
             var query = new VideoQuery(videoDb);
