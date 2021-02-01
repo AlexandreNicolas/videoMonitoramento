@@ -1,0 +1,12 @@
+CREATE DATABASE videoMonitoramento;
+USE videoMonitoramento;
+
+CREATE TABLE IF NOT EXISTS `Server` (
+  Id CHAR(36) CHARSET utf8mb4,
+  Name LONGTEXT CHARSET utf8mb4,
+  Ip LONGTEXT CHARSET utf8mb4,
+  Port INT,
+  PRIMARY KEY (`Id`)
+) ENGINE=InnoDB;
+
+# SET time_zone='America/Sao_Paulo';

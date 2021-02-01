@@ -11,7 +11,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 
-namespace videoMonitoramento
+namespace VideoMonitoramento
 {
     public class Startup
     {
@@ -26,6 +26,7 @@ namespace videoMonitoramento
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+            services.AddTransient<ServerDb>(_ => new ServerDb(Configuration["ConnectionStrings:DbConnection"]));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
