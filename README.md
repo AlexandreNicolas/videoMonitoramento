@@ -1,4 +1,4 @@
-# videoMonitoramento
+# API REST in C# integrate with MySQL
 Desenvolvimento back-end de uma API REST para o contexto de vídeo-monitoramento 
 
 ## Configurações iniciais
